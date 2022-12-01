@@ -10,6 +10,7 @@ import scipy as sp
 from sklearn.linear_model import orthogonal_mp_gram
 import scipy.misc
 from skimage import data, io, util
+from skimage.metrics import peak_signal_noise_ratio
 from sklearn.feature_extraction import image
 
 
@@ -118,12 +119,24 @@ patches = image.extract_patches_2d(img_noised, patch_size)
 signals = patches.reshape(patches.shape[0], -1)
 mean = np.mean(signals, axis=1)[:, np.newaxis]
 signals -= mean
-aksvd = ApproximateKSVD(n_components=32)
+aksvd = ApproximateKSVD(n_components=70)
 dictionary = aksvd.fit(signals[:10000]).components_
 gamma = aksvd.transform(signals)
 reduced = gamma.dot(dictionary) + mean
 reduced_img = image.reconstruct_from_patches_2d(
     reduced.reshape(patches.shape), img_noised.shape)
-io.imsave('denoised.png', clip(reduced_img))
+io.imsave('denoised_70.png', clip(reduced_img))
 
+
+#compare images measuring by psnr: greater results means better quality
+true = io.imread('coffee.png')
+noise = io.imread('noise_coffee.png')
+reduced_32 = io.imread('denoised_32.png')
+reduced_50 = io.imread('denoised_50.png')
+reduced_70 = io.imread('denoised_70.png')
+
+print('noise: %.3f' % (peak_signal_noise_ratio(true, noise)))
+print('reduced: %.3f' % (peak_signal_noise_ratio(true, reduced_32)))
+print('reduced: %.3f' % (peak_signal_noise_ratio(true, reduced_50)))
+print('reduced: %.3f' % (peak_signal_noise_ratio(true, reduced_70)))
 
