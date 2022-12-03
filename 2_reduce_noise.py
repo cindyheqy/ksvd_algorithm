@@ -43,18 +43,20 @@ def create_dir(img_path):
         os.makedirs(dir)
     return dir
 
-def save_denoiced_img(img_path, start=10, end=20, step=10): 
+def save_denoiced_img(img_path, start=40, end=130, step=10): # change k
     for k in range(start, end, step): 
+        print(k)
         noised_img_path = os.path.join(noised_dir, img_path)
         dir = create_dir(img_path)
         output_path = os.path.join(dir, f'{k}.png')
         io.imsave(output_path, denoise(noised_img_path, k))
 
-def reduce_noise(path=noised_dir, update_all=True):  
+def reduce_noise(update_all=False, path=noised_dir):  
     if update_all: 
         for fname in os.listdir(path): 
             save_denoiced_img(fname)
     else: 
         save_denoiced_img(path)
-    
-reduce_noise(path=noised_dir, update_all=True)
+
+# reduce_noise(update_all=True)
+reduce_noise(path='coffee_draw.png')

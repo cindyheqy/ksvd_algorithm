@@ -15,7 +15,6 @@ denoised_dir = os.path.join(image_dir, 'denoised')
 table_dir = os.path.join(dir, 'table')
 
 def get_psnr(img_path, k): 
-    # coffee.png
     img_name = img_path.split('.')[0]
     true = io.imread(os.path.join(initial_dir, img_path))
     reduced = io.imread(os.path.join(denoised_dir, img_name, f'{k}.png'))
@@ -28,12 +27,14 @@ def get_psnr_table(img_path):
     k_list = []
     psnr_list = []
     for fname in os.listdir(os.path.join(denoised_dir, img_name)):
-        k = fname.split('.')[0]
+        k = int(fname.split('.')[0])
         k_list.append(k)
         psnr = get_psnr(img_path, k)
         psnr_list.append(psnr)
     data = {'k': k_list, 'psnr': psnr_list}
     k_psnr_change = pd.DataFrame(data)
+    k_psnr_change = k_psnr_change.sort_values(by='k')
+    k_psnr_change.reset_index(drop=True, inplace=True)
     return k_psnr_change
 
 def write_psnr_table(img_path): 
@@ -48,20 +49,5 @@ def psnr_table(path=initial_dir, update_all=True):
     else: 
         write_psnr_table(path)
 
-psnr_table(path=initial_dir, update_all=True)
-    
-
-# for fname in os.listdir(initial_dir):     
-
-
-
-#compare images measuring by psnr: greater results means better quality
-
-
-# print('noise: %.3f' % (peak_signal_noise_ratio(true, noise)))
-# print('reduced: %.3f' % (peak_signal_noise_ratio(true, reduced)))
-
-
-
-# draw_change(k_change)
-# plt.savefig("k_change.png")
+# psnr_table(path=initial_dir, update_all=True)
+psnr_table('mosaic_color.png', update_all=False)
