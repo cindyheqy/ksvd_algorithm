@@ -43,7 +43,7 @@ def create_dir(img_path):
         os.makedirs(dir)
     return dir
 
-def save_denoiced_img(img_path, start=40, end=130, step=10): # change k
+def save_denoiced_img(img_path, start=10, end=130, step=10): # change k
     for k in range(start, end, step): 
         print(k)
         noised_img_path = os.path.join(noised_dir, img_path)
@@ -58,5 +58,5 @@ def reduce_noise(update_all=False, path=noised_dir):
     else: 
         save_denoiced_img(path)
 
-# reduce_noise(update_all=True)
-reduce_noise(path='coffee_draw.png')
+reduce_noise(update_all=True)
+# reduce_noise(path='coffee_draw.png')

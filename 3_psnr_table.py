@@ -3,20 +3,19 @@
 
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
-from skimage import data, io
+from skimage import io
 from skimage.metrics import peak_signal_noise_ratio
 
 dir = '/Users/qingyi/Documents/uchicago/courses/machine_learning/project/ksvd_algorithm'
 image_dir = os.path.join(dir, 'image')
-initial_dir = os.path.join(image_dir, 'initial')
+resized_dir = os.path.join(image_dir, 'resized')
 noised_dir = os.path.join(image_dir, 'noised')
 denoised_dir = os.path.join(image_dir, 'denoised')
 table_dir = os.path.join(dir, 'table')
 
 def get_psnr(img_path, k): 
     img_name = img_path.split('.')[0]
-    true = io.imread(os.path.join(initial_dir, img_path))
+    true = io.imread(os.path.join(resized_dir, img_path))
     reduced = io.imread(os.path.join(denoised_dir, img_name, f'{k}.png'))
     psnr = peak_signal_noise_ratio(true, reduced)
     psnr = round(psnr, 3)
@@ -42,12 +41,12 @@ def write_psnr_table(img_path):
     k_psnr_change = get_psnr_table(img_path)
     k_psnr_change.to_csv(os.path.join(table_dir, f'{img_name}.csv'))
 
-def psnr_table(path=initial_dir, update_all=True):  
+def psnr_table(path=resized_dir, update_all=True):  
     if update_all: 
         for fname in os.listdir(path): 
             write_psnr_table(fname)
     else: 
         write_psnr_table(path)
 
-# psnr_table(path=initial_dir, update_all=True)
-psnr_table('mosaic_color.png', update_all=False)
+psnr_table(path=resized_dir, update_all=True)
+# psnr_table('mosaic_color.png', update_all=False)
