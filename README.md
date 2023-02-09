@@ -16,7 +16,7 @@ And next, we manually added Gaussian noise with fixed seed = 1 to make sure choi
 _Denoising:_
 We wrote the K-SVD algorithm with **'2_reduce_noise.py'** and it turns out to work on all types of images we chose. The denoised images are stored in **'image/denoised'** folder. 
 
-_Observe the impact of different K(s) on reconstruction quality measured by PSNR"_
+_Measuring:_
 We used Peak signal-to-noise ratio (PSNR) to examine the impact of K on the reconstruction quality. With higher scores, the reconstruction quality of the noised image will be better. To observe the change, we varied K from 10 to 120 in steps of 10 units at a time, and we expected to see a close-to-linear relationship between the choice of K and the reconstruction accuracy. We calculated PSNR with different K values for all 6 pictures with **'3_psnr_table'** and visualize the data with **'4_draw_plot.py'**. And the output can be found at **'final_output.png'**. 
 
 _Results:_ 
