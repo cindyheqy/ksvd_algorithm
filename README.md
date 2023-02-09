@@ -1,12 +1,8 @@
-# ksvd_algorithm
+# K-SVD Algorithm Using Batch-OMP in Image Denoising
 
 In this project, we focus on K-SVD with Batch-OMP algorithm, try to understand both its mathematics and implementations. Specifically, we wish to understand the algorithm from its optimal range of applications and the impact of its key parameters on the quality of image reconstruction. 
 
 In our **'final_paper'** , we first reviewed image denoising algorithms and the specific kind of K-SVD algorithm using Batch-OMP that attracts us in Part 1. Then we walked through the kernel mathematics for both Batch-OMP and the K-SVD algorithms in Part 2. Finally, in Part 3, we reproduced this algorithm and tested its performance on 6 different images and observed the relationship between K – the target sparsity in K-SVD, and the reconstruction quality.
-
-3 K-SVD Application and Test Results 
-
-3.1 Test on different types of images
 
 _Data source:_ 
 After rewriting Python syntax by referring to the algorithm in **'ksvd.py'**, we choose 6 different types of images to test its performance. There are black and white, colored, 3-d, informative CT photo, black and white mosaic and colored mosaic images. The goal is to test the performance of K-SVD using Batch-OMP on as much types of signals as possible to find its optimal applications.
