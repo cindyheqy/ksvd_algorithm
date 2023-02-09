@@ -8,11 +8,11 @@ In our **'final_paper'** , we first reviewed image denoising algorithms and the 
 
 3.1 Test on different types of images
 
-⋅⋅* Data source: 
+* Data source: 
 After rewriting Python syntax by referring to the algorithm in **'ksvd.py'**, we choose 6 different types of images to test its performance. There are black and white, colored, 3-d, informative CT photo, black and white mosaic and colored mosaic images. The goal is to test the performance of K-SVD using Batch-OMP on as much types of signals as possible to find its optimal applications.
 Initial images can be found under **'image/initial'** folder. 
 
-⋅⋅* Pre-Processing: We first tried to uniform the pixel sizes of those images by setting them all to be 600x400 after we read them into the environment. Pre-Processing process is conducted with **'0_resize.py'**. Pre-Processed images can be found under **'image/resized'** folder. 
+* Pre-Processing: We first tried to uniform the pixel sizes of those images by setting them all to be 600x400 after we read them into the environment. Pre-Processing process is conducted with **'0_resize.py'**. Pre-Processed images can be found under **'image/resized'** folder. 
 
 And next, we manually added Gaussian noise with fixed seed = 1 to make sure choices of noise type and standard deviations won’t affect test results.
 
