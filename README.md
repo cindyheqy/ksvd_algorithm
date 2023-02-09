@@ -1,6 +1,6 @@
 # K-SVD Algorithm Using Batch-OMP in Image Denoising
 
-In this project, we focus on K-SVD with Batch-OMP algorithm, try to understand both its mathematics and implementations. Specifically, we wish to understand the algorithm from its optimal range of applications and the impact of its key parameters on the quality of image reconstruction. 
+In this project, we focus on K-SVD with Batch-OMP algorithm, trying to understand both its mathematics and implementations. Specifically, we wish to understand the algorithm from its optimal range of applications and the impact of its key parameters on the quality of image reconstruction. 
 
 The **'final_paper.pdf'** contains all our research results. In the paper, we first reviewed image denoising algorithms and the specific kind of K-SVD algorithm using Batch-OMP that attracts us in Part 1. Then we walked through the kernel mathematics for both Batch-OMP and the K-SVD algorithms in Part 2. Finally, in Part 3, we reproduced this algorithm and tested its performance on 6 different images and observed the relationship between K – the target sparsity in K-SVD, and the reconstruction quality.
 
